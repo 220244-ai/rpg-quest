@@ -29,6 +29,9 @@ info.onLifeZero(function () {
     game.gameOver(false)
     game.setGameOverEffect(false, effects.slash)
 })
+info.onScore(8, function () {
+    tiles.setCurrentTilemap(tilemap`trial_3`)
+})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (wolf_0) {
         sprites.destroy(wolf_0, effects.disintegrate, 1000)
