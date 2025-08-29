@@ -33,12 +33,17 @@ info.onScore(8, function () {
     tiles.setCurrentTilemap(tilemap`trial_3`)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
-    if (wolf_0) {
-        sprites.destroy(wolf_0, effects.disintegrate, 1000)
+    if (wolf) {
+        sprites.destroy(wolf, effects.disintegrate, 100)
+        info.changeScoreBy(1)
+    }
+    if (big_wolf) {
+        sprites.destroy(big_wolf, effects.disintegrate, 100)
         info.changeScoreBy(1)
     }
 })
-let wolf_0: Sprite = null
+let big_wolf: Sprite = null
+let wolf: Sprite = null
 let arrow: Sprite = null
 let player_0: Sprite = null
 tiles.setCurrentTilemap(tilemap`trial_1`)
@@ -49,8 +54,15 @@ player_0.setPosition(96, 96)
 scene.cameraFollowSprite(player_0)
 info.setScore(0)
 info.setLife(1)
+game.onUpdateInterval(randint(10000, 15000), function () {
+    if (info.score() == 3) {
+        big_wolf = sprites.create(assets.image`big_wolf`, SpriteKind.Enemy)
+        big_wolf.setPosition(randint(0, scene.screenWidth()), 0)
+        big_wolf.follow(player_0, 25)
+    }
+})
 game.onUpdateInterval(randint(7500, 10000), function () {
-    wolf_0 = sprites.create(assets.image`wolf`, SpriteKind.Enemy)
-    wolf_0.setPosition(randint(0, scene.screenWidth()), 0)
-    wolf_0.follow(player_0, 40)
+    wolf = sprites.create(assets.image`wolf`, SpriteKind.Enemy)
+    wolf.setPosition(randint(0, scene.screenWidth()), 0)
+    wolf.follow(player_0, 40)
 })

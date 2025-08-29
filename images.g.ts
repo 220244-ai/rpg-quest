@@ -114,6 +114,25 @@ f f e e e e .
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `;
+            case "image8":
+            case "big_wolf":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . d . . . . . . . . . . . 
+. . d d d d d . . . . . d d d d 
+. d f d d d d d d d d d d d d . 
+. d d d d d d d d d d d d d . . 
+. d d d d d d d d d d d d . . . 
+. . . . d d d . . d d d . . . . 
+. . . . d d d . . d d d . . . . 
+. . . . d d d . . d d d . . . . 
+. . . . d d d . . d d d . . . . 
+. . . . d d d . . d d d . . . . 
+. . . . d d . . . d d . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`;
         }
         return null;
     })
