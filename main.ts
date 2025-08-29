@@ -29,18 +29,19 @@ info.onLifeZero(function () {
     game.gameOver(false)
     game.setGameOverEffect(false, effects.slash)
 })
+sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
+    if (wolf) {
+        info.changeScoreBy(1)
+    }
+    if (big_wolf) {
+        info.changeScoreBy(1)
+    }
+})
 info.onScore(8, function () {
     tiles.setCurrentTilemap(tilemap`trial_3`)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
-    if (wolf) {
-        sprites.destroy(wolf, effects.disintegrate, 100)
-        info.changeScoreBy(1)
-    }
-    if (big_wolf) {
-        sprites.destroy(big_wolf, effects.disintegrate, 100)
-        info.changeScoreBy(1)
-    }
+    sprites.destroy(otherSprite, effects.disintegrate, 200)
 })
 let big_wolf: Sprite = null
 let wolf: Sprite = null
@@ -55,7 +56,7 @@ scene.cameraFollowSprite(player_0)
 info.setScore(0)
 info.setLife(1)
 game.onUpdateInterval(randint(10000, 15000), function () {
-    if (info.score() == 3) {
+    if (info.score() >= 3) {
         big_wolf = sprites.create(assets.image`big_wolf`, SpriteKind.Enemy)
         big_wolf.setPosition(randint(0, scene.screenWidth()), 0)
         big_wolf.follow(player_0, 25)
