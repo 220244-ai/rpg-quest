@@ -19,32 +19,39 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         music.play(music.createSoundEffect(WaveShape.Square, 306, 843, 169, 177, 400, SoundExpressionEffect.Vibrato, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
     }
 })
+info.onScore(15, function () {
+    tiles.setCurrentTilemap(tilemap`trial_4`)
+    game.splash("Trial 4")
+    player_0.setPosition(132, 132)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+})
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
 })
 info.onScore(3, function () {
     tiles.setCurrentTilemap(tilemap`trial_2`)
+    game.splash("Trial 2")
+    player_0.setPosition(120, 120)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
 })
 info.onLifeZero(function () {
     game.gameOver(false)
     game.setGameOverEffect(false, effects.slash)
 })
 sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
-    if (wolf) {
-        info.changeScoreBy(1)
-    }
-    if (big_wolf) {
-        info.changeScoreBy(1)
-    }
+    info.changeScoreBy(1)
 })
 info.onScore(8, function () {
     tiles.setCurrentTilemap(tilemap`trial_3`)
+    game.splash("Tiral 3")
+    player_0.setPosition(120, 120)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(otherSprite, effects.disintegrate, 200)
 })
-let big_wolf: Sprite = null
 let wolf: Sprite = null
+let big_wolf: Sprite = null
 let arrow: Sprite = null
 let player_0: Sprite = null
 tiles.setCurrentTilemap(tilemap`trial_1`)
